@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Functionalities</title>
+    <style>
+        .highlight {
+            color: black;
+            transition: color 0.3s;
+            cursor: pointer; 
+        }
+        .highlight:hover {
+            color: red; 
+        }
+        .coordinates {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="highlight">Hover over me!</div><br>
+    </div>
+    
+    <div>
+        <span class="highlight" onclick="displayValue()">Click to enter a value</span>
+    </div>
+
+    <div>
+        <h1 onclick="showCoordinates(event)">Click here to show mouse coordinates</h1>
+        <p>Some paragraph text here.</p>
+        <span class="coordinates"></span>
+    </div>
+
+    <div>
+        <textarea id="textArea" rows="4" cols="50" oninput="countCharacters(this)"></textarea>
+        <div>Total characters: <span id="charCount">0</span></div>
+    </div>
+
+    <script>
+        function displayValue() {
+            var userInput = prompt("Enter a value:");
+            if (userInput !== null) {
+                var spanElement = document.querySelector('.highlight');
+                spanElement.textContent = userInput;
+            }
+        }
+        function showCoordinates(event) {
+            var x = event.clientX;
+            var y = event.clientY;
+
+            var coordinatesElement = document.querySelector('.coordinates');
+            coordinatesElement.textContent = 'Mouse coordinates: (X: ' + x + ', Y: ' + y + ')';
+        }
+        function countCharacters(textArea) {
+            var charCountElement = document.getElementById('charCount');
+            charCountElement.textContent = textArea.value.length;
+        }
+    </script>
+</body>
+</html>
